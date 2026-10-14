@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>My Calculator</title>
+
+    <style>
+        body {
+          font-family: Arial;
+          text-align: center;
+          margin-top: 50px;
+        }
+
+        .calculator {
+           width: 250px;
+           margin: auto;
+           padding: 20px;
+           border: 2px solid black;
+           border-radius: 10px;
+        }
+
+        #display {
+           width: 220px;
+           height: 40px;
+           font-size: 22px;
+           margin-bottom: 10px;
+           text-align: right;
+        }
+
+        button {
+           width: 50px;
+           height: 50px;
+           font-size: 18px;
+        }
+    
+        .buttons {
+           width: 220px;
+           margin: 0 auto;
+           display: grid;
+           grid-template-columns:
+        repeat(4, 50px);
+           gap: 6px;
+           justify-context: center;
+        }
+
+        .equals {
+           grid-column: 4;
+           grid-row: 4 / 6;
+           height: auto;
+        }
+
+        button:hover {
+           background-color: lightgray;   
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>My Calculator</h1>
+
+<div class="calculator">
+
+<input type="text" id="display" readonly>
+
+  <div class="buttons">
+
+<button onclick="clearDisplay()">C</button>
+<button onclick="add('/')">÷</button>
+<button onclick="add('*')">×</button>
+<button onclick="backspace()">⌫</button>
+
+<button onclick="add('7')">7</button>
+<button onclick="add('8')">8</button>
+<button onclick="add('9')">9</button>
+<button onclick="add('-')">-</button>
+
+<button onclick="add('4')">4</button>
+<button onclick="add('5')">5</button>
+<button onclick="add('6')">6</button>
+<button onclick="add('+')">+</button>
+
+<button onclick="add('1')">1</button>
+<button onclick="add('2')">2</button>
+<button onclick="add('3')">3</button>
+<!-- = button -->
+<button class="equals"
+onclick="calculate()">=</button>
+
+<button onclick="percentage()">%</button>
+<button onclick="add('0')">0</button>
+<button onclick="add('.')">.</button>
+
+  </div>
+
+</div>
+
+<script>
+
+function add(value) {
+
+document.getElementById("display").value +=
+value;
+}
+
+function clearDisplay() {
+
+document.getElementById("display").value =
+"";
+}
+
+function backspace() {
+    let display =
+document.getElementById("display");
+    display.value =
+display.value.slice(0, -1);
+}
+
+function percentage() {
+    let display =
+document.getElementById("display");
+    display.value =
+Number(display.value) / 100;
+}
+
+
+function calculate() {
+    let expression =
+document.getElementById("display").value;
+
+    if (expression.includes("+")) {
+        let numbers =
+expression.split("+");
+
+document.getElementById("display").value =
+            Number(numbers[0]) + Number(numbers[1]);
+    }
+
+    else if (expression.includes("-")) {
+        let numbers =
+expression.split("-");
+
+document.getElementById("display").value = 
+            Number(numbers[0]) - Number(numbers[1]);
+    }
+
+    else if (expression.includes("*")) {
+        let numbers =
+expression.split("*");
+
+document.getElementById("display").value = 
+            Number(numbers[0]) * Number(numbers[1]);
+    }    
+
+    else if (expression.includes("/")) {
+        let numbers =
+expression.split("/");
+
+document.getElementById("display").value = 
+            Number(numbers[0]) / Number(numbers[1]);
+    }
+}
+
+</script>
+
+</body>
+</html>
